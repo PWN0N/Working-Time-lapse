@@ -5,4 +5,4 @@ Time-lapse photography is a technique whereby the frequency at which film frames
 Apple's Screen Time did not meet my requirements very well. It is mainly unable to meet the requirements of cross-platform and recording daily behaviors. The project can support up to two cameras as image input sources, and record screen operations to make separate videos, so that you can summarize and adjust the time schedule throughout the day.
 
 ### License
-This project is released under a GPLv3 license. 
+This project is released under MIT License. 

@@ -24,6 +24,17 @@ def signal_handler(signal,frame):
     shutdown_msg = True
     print('Saving Videos')
 
+def add_timestamp(img):
+
+    time_str= time.strftime("%Y-%m-%d %H:%M:%S")
+
+    color=(255,255,255)
+    if np.mean( img[700:780,900:950])>128:
+        color=(0,0,0)
+
+    cv2.putText(img, time_str, (900, 700) ,cv2.FONT_HERSHEY_SIMPLEX ,0.8, color ,2)
+    return img
+
 capture = cv2.VideoCapture(0)
 capture1 = cv2.VideoCapture(1)
 
@@ -89,7 +100,9 @@ while True:
         if (shutdown_msg):
             break
         _, frame = capture.read()
-        video.write(frame)
+
+
+        video.write(add_timestamp(frame))
 
         desktopim = np.array(ImageGrab.grab().convert('RGB'))
 
@@ -97,11 +110,11 @@ while True:
         # ImageGrab and OpenCV have different color space
         desktopFrame = cv2.cvtColor(desktopim, cv2.COLOR_BGR2RGB)
 
-        desktopvideo.write(desktopFrame)
+        desktopvideo.write(add_timestamp(desktopFrame))
 
         if (cammode == 1):
             _, frame1 = capture1.read()
-            video1.write(frame1)
+            video1.write(add_timestamp(frame1))
 
         time.sleep(interval)
 
